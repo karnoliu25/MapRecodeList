@@ -1,0 +1,150 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+a {
+  color: #eee;
+  text-decoration: none;
+}
+:root {
+  --main-color: #848fa2;
+  --minor-color: #222831;
+  --bg-color: #eeeeee;
+  --detail-color: #e7effc;
+}
+
+button {
+  border: none;
+  border-radius: 10px;
+  height: 30px;
+  width: 80px;
+  font-size: 20px;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 30px;
+  background-color: var(--detail-color);
+}
+button:hover {
+  background-color: #d4e3fa;
+}
+
+.container {
+  width: 95vw;
+  height: 90vh;
+  margin: 5vh auto;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-color);
+  position: relative;
+}
+/* 首尾 */
+header,
+footer {
+  height: 60px;
+  color: #eee;
+  background: var(--minor-color);
+}
+header {
+  line-height: 60px;
+  font-weight: 800;
+  font-size: large;
+  padding-left: 20px;
+}
+footer {
+  font-size: small;
+  width: 100%;
+  bottom: 0;
+  text-align: center;
+}
+/* 主体 */
+.main {
+  display: flex;
+  flex-grow: 1;
+}
+/*  记录区域 */
+.record {
+  width: 40vw;
+  background: var(--main-color);
+}
+/* 操作区 */
+.control {
+  border-bottom: 4px double var(--minor-color);
+}
+/* 记录主体 */
+.content {
+  padding-left: 10px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  cursor: pointer;
+  border-bottom: 1px solid var(--minor-color);
+}
+.content:hover {
+  background-color: #94a2b8;
+}
+/* 隐藏与展示 */
+/* 点击查看写作项目 */
+.hide {
+  display: none;
+}
+.show {
+  display: block;
+}
+/* 新建记录区域 */
+.writebox {
+  height: 400px;
+  width: 400px;
+  text-align: center;
+  border: 1px solid #000;
+  top: 50px;
+  left: 30%;
+  position: absolute;
+  background-color: var(--detail-color);
+  display: none;
+}
+.writebox h3 {
+  height: 40px;
+  padding: 5px 0;
+  color: var(--detail-color);
+  background-color: var(--minor-color);
+}
+#title {
+  width: 95%;
+  padding-left: 5px;
+  margin: 10px auto;
+  display: block;
+  height: 30px;
+}
+#writehere {
+  display: block;
+  width: 95%;
+  padding-top: 5px;
+  padding-left: 5px;
+  margin: 5px auto;
+  height: 15em;
+}
+.writebox select {
+  height: 30px;
+  width: 40px;
+  margin: 0 10px;
+}
+.writebox select option {
+  text-align: center;
+}
+.writebox .date {
+  cursor: pointer;
+}
+.writebox-control button {
+  margin-left: 0;
+  background-color: #c4cfe2;
+  height: 40px;
+  line-height: 40px;
+}
+.writebox-control button:hover {
+  background-color: #dce5f3;
+}
+/* 地图区域 */
+.map {
+  flex-grow: 1;
+}
