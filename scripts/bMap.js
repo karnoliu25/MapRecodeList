@@ -66,11 +66,11 @@ const mapClick = function () {
     const zoom = map.getZoom();
     const newPoint = e.point;
     console.log(newPoint);
-    map.panTo(newPoint);
-    console.log(zoom);
-    if (zoom !== 19) {
-      map.setZoom(19);
-    }
+    map.panTo(newPoint, {
+      noAnimation: false,
+      delay: 300,
+    });
+    map.centerAndZoom(newPoint, 19);
     if (Math.floor(zoom) === 19) {
       // 检查新点是否与已有标记点距离过近
       const isTooClose = existingMarkers.some((point) => {
