@@ -21,7 +21,7 @@ navigator.geolocation.getCurrentPosition(
 // --初始化地图
 const init = function (lng = 116.404, lat = 39.915) {
   const point = new BMap.Point(lng, lat);
-  map.centerAndZoom(point, 12);
+  map.centerAndZoom(point, 14);
   addControl();
   mapClick();
 };
@@ -67,12 +67,13 @@ const mapClick = function () {
     const newPoint = e.point;
     console.log(newPoint);
     map.panTo(newPoint, {
-      noAnimation: false,
       delay: 300,
     });
-    map.centerAndZoom(newPoint, 19);
+    if (zoom !== 19) {
+      map.setZoom(19);
+    }
     if (Math.floor(zoom) === 19) {
-      // 检查新点是否与已有标记点距离过近
+      // 检查新点是否与已有标记点距离过近;
       const isTooClose = existingMarkers.some((point) => {
         return map.getDistance(point, newPoint) < minDistance;
       });
