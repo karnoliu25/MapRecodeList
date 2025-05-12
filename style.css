@@ -101,7 +101,6 @@ footer {
   left: 30%;
   position: absolute;
   background-color: var(--detail-color);
-  display: none;
 }
 .writebox h3 {
   height: 40px;
