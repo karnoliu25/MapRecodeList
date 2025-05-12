@@ -7,6 +7,9 @@ a {
   color: #eee;
   text-decoration: none;
 }
+li {
+  list-style: none;
+}
 :root {
   --main-color: #848fa2;
   --minor-color: #222831;
