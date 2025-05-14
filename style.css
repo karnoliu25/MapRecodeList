@@ -40,7 +40,6 @@ button:hover {
   display: flex;
   flex-direction: column;
   background-color: var(--bg-color);
-  position: relative;
 }
 /* 首尾 */
 header,
@@ -103,22 +102,18 @@ footer {
 }
 /* 新建记录区域 */
 .writebox {
-  height: 400px;
-  width: 400px;
+  max-height: 0;
+  overflow: hidden;
   text-align: center;
   border: 1px solid #000;
-  top: 50px;
-  left: 30%;
-  position: absolute;
   background-color: var(--detail-color);
+  transition: max-height 1s ease;
 }
-.writebox h3 {
-  height: 40px;
-  padding: 5px 0;
-  color: var(--detail-color);
-  background-color: var(--minor-color);
+.writebox.show {
+  max-height: 500px;
 }
-#title {
+
+.writebox #title {
   width: 95%;
   padding-left: 5px;
   margin: 10px auto;
@@ -135,7 +130,7 @@ footer {
 }
 .writebox select {
   height: 30px;
-  width: 40px;
+  width: 60px;
   margin: 0 10px;
 }
 .writebox select option {
@@ -148,13 +143,10 @@ footer {
   border-radius: 10px;
   padding: 0 5px;
 }
-
-/* .writebox .date {
-  cursor: pointer;
+.writebox-control {
+  display: flex;
+  justify-content: space-around;
 }
-.writebox .local {
-  cursor: pointer;
-} */
 .writebox-control button {
   margin-left: 0;
   background-color: #dce5f3;
@@ -168,24 +160,4 @@ footer {
 .map {
   position: relative;
   flex-grow: 1;
-}
-/* 点击地图确认 */
-.map-control {
-  display: flex;
-}
-.map-control .map-control-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-}
-.map-control .map-control-display {
-  position: absolute;
-  top: 20px;
-  left: 30vw;
-  border-radius: 10px;
-  padding: 0 10px;
-  height: 30px;
-  line-height: 30px;
-  text-wrap: wrap;
-  background-color: var(--bg-color);
 }

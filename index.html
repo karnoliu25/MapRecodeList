@@ -16,6 +16,37 @@
       <div class="main">
         <!-- 记录区域 -->
         <div class="record">
+          <!-- 新建窗口 -->
+          <div class="writebox show">
+            <h3>write here 👇</h3>
+            <input type="text" name="title" id="title" placeholder="写下标题" />
+            <select name="weather" id="weather">
+              <option value="0">晴☀️</option>
+              <option value="1">阴☁️</option>
+              <option value="2">雨🌧️</option>
+              <option value="3">风🍃</option>
+            </select>
+            <select name="mood" id="mood">
+              <option value="0">喜😊</option>
+              <option value="1">怒😡</option>
+              <option value="2">哀😢</option>
+              <option value="3">乐😄</option>
+            </select>
+            <span class="date">日期</span>
+            <!--已选择后 <span class="date">2025/05/14</span> -->
+            <span class="local">地点</span>
+            <!--已选择后 <span class="local">✔️</span> -->
+            <textarea
+              name="writehere"
+              id="writehere"
+              placeholder="请写于此"
+            ></textarea>
+            <div class="writebox-control">
+              <button class="submit">✔️</button>
+              <button class="reset">♻️</button>
+              <button class="cancel">❌</button>
+            </div>
+          </div>
           <!-- 正式内容区 -->
           <ul>
             <li>
@@ -66,47 +97,6 @@
         <p>版权作者什么什么的</p>
         <p>@karnoliu</p>
       </footer>
-      <!-- 新建窗口 -->
-      <div class="writebox hide">
-        <h3>write here 👇</h3>
-        <input type="text" name="title" id="title" placeholder="写下标题" />
-        <select name="weather" id="weather">
-          <option value="0">晴☀️</option>
-          <option value="1">阴☁️</option>
-          <option value="2">雨🌧️</option>
-          <option value="3">风🍃</option>
-        </select>
-        <select name="mood" id="mood">
-          <option value="0">喜😊</option>
-          <option value="1">怒😡</option>
-          <option value="2">哀😢</option>
-          <option value="3">乐😄</option>
-        </select>
-        <span class="date">日期</span>
-        <!--已选择后 <span class="date">2025/05/14</span> -->
-        <span class="local">地点</span>
-        <!--已选择后 <span class="local">✔️</span> -->
-        <textarea
-          name="writehere"
-          id="writehere"
-          placeholder="请写于此"
-        ></textarea>
-        <div class="writebox-control">
-          <button>✔️</button>
-          <button>❌</button>
-        </div>
-      </div>
-      <!-- 点击地图确认 -->
-      <div class="map-control">
-        <div class="map-control-display hide">
-          <span>当前地址：</span>
-          <span>石嘴山市大武口区</span>
-        </div>
-        <div class="map-control-button hide">
-          <button>取消</button>
-          <button>确定</button>
-        </div>
-      </div>
     </div>
     <script defer src="scripts/bMap.js"></script>
     <script src="scripts/index.js"></script>
