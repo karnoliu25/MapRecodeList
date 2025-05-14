@@ -84,3 +84,17 @@ const mapClick = function () {
     }
   });
 };
+
+// ==节流器==
+// --节流器--
+const throttle = function (fn, delay = 500) {
+  let timer = null;
+  return function (...args) {
+    if (!timer) {
+      timer = setTimeout(() => {
+        timer = null;
+        fn.apply(this, args);
+      }, delay);
+    }
+  };
+};
