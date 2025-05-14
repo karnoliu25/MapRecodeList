@@ -23,7 +23,7 @@ const init = function (lng = 116.404, lat = 39.915) {
   const point = new BMap.Point(lng, lat);
   map.centerAndZoom(point, 14);
   addControl();
-  mapClick();
+  throttle(geocoder(), 700);
 };
 // --添加控件--
 const addControl = function () {
@@ -58,35 +58,28 @@ const info = function (title = "hello", content = "world", point) {
   const infoWindow = new BMap.InfoWindow(content, opts);
   map.openInfoWindow(infoWindow, point);
 };
-// --点击事件--
-const mapClick = function () {
-  let minDistance = 10;
-  let existingMarkers = [];
+// --点击事件----逆地址解析--
+// 创建临时标注
+let tempMarker = null;
+const geocoder = function () {
+  // 实例化地址解析器
+  const geoc = new BMap.Geocoder();
   map.addEventListener("click", function (e) {
-    const zoom = map.getZoom();
-    const newPoint = e.point;
-    console.log(newPoint);
-    map.panTo(newPoint, {
-      delay: 300,
+    if (tempMarker) {
+      // 清除地图上一个的覆盖物;
+      map.removeOverlay(tempMarker);
+    }
+    const pt = e.point;
+    const point = new BMap.Point(pt.lng, pt.lat);
+    tempMarker = new BMap.Marker(point);
+    map.addOverlay(tempMarker);
+    geoc.getLocation(pt, function (e) {
+      const address = e.addressComponents;
+      console.log(address);
     });
-    if (zoom !== 19) {
-      map.setZoom(19);
-    }
-    if (Math.floor(zoom) === 19) {
-      // 检查新点是否与已有标记点距离过近;
-      const isTooClose = existingMarkers.some((point) => {
-        return map.getDistance(point, newPoint) < minDistance;
-      });
-      if (!isTooClose) {
-        makeMarker(newPoint);
-        existingMarkers.push(newPoint);
-      }
-    }
   });
 };
-
 // ==节流器==
-// --节流器--
 const throttle = function (fn, delay = 500) {
   let timer = null;
   return function (...args) {

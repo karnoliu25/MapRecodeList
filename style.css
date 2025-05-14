@@ -142,17 +142,28 @@ footer {
 .writebox select option {
   text-align: center;
 }
-.writebox .date {
+.writebox span {
+  cursor: pointer;
+  font-weight: 700;
+  border: 1px solid var(--minor-color);
+  border-radius: 10px;
+  padding: 0 5px;
+}
+
+/* .writebox .date {
   cursor: pointer;
 }
+.writebox .local {
+  cursor: pointer;
+} */
 .writebox-control button {
   margin-left: 0;
-  background-color: #c4cfe2;
+  background-color: #dce5f3;
   height: 40px;
   line-height: 40px;
 }
 .writebox-control button:hover {
-  background-color: #dce5f3;
+  background-color: #c4cfe2;
 }
 /* 地图区域 */
 .map {
