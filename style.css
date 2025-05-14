@@ -71,10 +71,7 @@ footer {
   width: 40vw;
   background: var(--main-color);
 }
-/* 操作区 */
-.control {
-  border-bottom: 4px double var(--minor-color);
-}
+
 /* 记录主体 */
 .content {
   padding-left: 10px;
@@ -82,17 +79,20 @@ footer {
   padding-top: 5px;
   cursor: pointer;
   border-bottom: 1px solid var(--minor-color);
+  position: relative;
 }
 .content:hover {
   background-color: #94a2b8;
+}
+.delete {
+  position: absolute;
+  top: 5px;
+  right: 20px;
 }
 /* 隐藏与展示 */
 /* 点击查看写作项目 */
 .hide {
   display: none;
-}
-.show {
-  display: block;
 }
 /* 新建记录区域 */
 .writebox {
