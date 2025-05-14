@@ -35,17 +35,15 @@ const addControl = function () {
   map.addControl(new BMap.CopyrightControl());
   // 添加比例尺
   map.addControl(new BMap.ScaleControl(opts));
-  // 添加城市列表
-  // map.addControl(new BMapGL.CityListControl());
 };
 // --创建标点--
-const makeMarker = function (point) {
+const makeMarker = function (point, title, text) {
   const marker = new BMap.Marker(point);
   map.addOverlay(marker);
   marker.addEventListener("click", function () {
-    const title = `这个是标题`;
-    const content = `这里是内容部分啦`;
-    info(title, content, point);
+    title = `这个是标题`;
+    text = `这里是内容部分啦`;
+    info(title, text, point);
   });
 };
 // --添加信息窗口--
