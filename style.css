@@ -88,6 +88,14 @@ footer {
   position: absolute;
   top: 5px;
   right: 20px;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  border-radius: 10px;
+}
+.delete:hover {
+  background-color: var(--minor-color);
 }
 /* 隐藏与展示 */
 /* 点击查看写作项目 */
