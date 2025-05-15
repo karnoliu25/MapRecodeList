@@ -23,7 +23,13 @@ const init = function (lng = 116.404, lat = 39.915) {
   const point = new BMap.Point(lng, lat);
   map.centerAndZoom(point, 14);
   addControl();
-  throttle(geocoder(), 700);
+  if (localData) {
+    localData.forEach((v) => {
+      makeMarker(v.point, v.title, v.text);
+    });
+  }
+
+  throttle(geocoder(), 1000);
 };
 // --添加控件--
 const addControl = function () {
@@ -41,8 +47,6 @@ const makeMarker = function (point, title, text) {
   const marker = new BMap.Marker(point);
   map.addOverlay(marker);
   marker.addEventListener("click", function () {
-    title = `这个是标题`;
-    text = `这里是内容部分啦`;
     info(title, text, point);
   });
 };
@@ -69,13 +73,12 @@ const geocoder = function () {
     }
     const pt = e.point;
     const point = new BMap.Point(pt.lng, pt.lat);
+    userData.point = point;
     tempMarker = new BMap.Marker(point);
     map.addOverlay(tempMarker);
-
     writebox.classList.add("show");
     geoc.getLocation(pt, function (e) {
       const address = e.addressComponents;
-
       currentLocal.innerText = `${
         address.province +
         address.city +
@@ -83,7 +86,6 @@ const geocoder = function () {
         address.street +
         address.streetNumber
       }`;
-      console.log(address);
     });
   });
 };
