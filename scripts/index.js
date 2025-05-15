@@ -1,7 +1,3 @@
-// 删除
-const deleteFn = function () {
-  console.log("delete");
-};
 // laydate
 layui.use(function () {
   const laydate = layui.laydate;
@@ -15,3 +11,4 @@ window.addEventListener("load", contentDis);
 submitBtn.addEventListener("click", submit);
 resetBtn.addEventListener("click", reset);
 cancelBtn.addEventListener("click", cancel);
+// deleteBtns.forEach((v) => v.addEventListener("click", deleteFn));

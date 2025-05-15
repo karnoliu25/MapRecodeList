@@ -3,6 +3,7 @@
 const submitBtn = document.querySelector(".submit");
 const resetBtn = document.querySelector(".reset");
 const cancelBtn = document.querySelector(".cancel");
+// const deleteBtns = document.querySelectorAll(".deleteBtn");
 // 获取数据元素
 const title = document.querySelector("#title");
 const weatherSel = document.querySelector("#weather");
@@ -13,3 +14,4 @@ const text = document.querySelector("#writehere");
 // 显示区元素
 const writebox = document.querySelector(".writebox");
 const contentList = document.querySelector(".content-list");
+const contentLis = document.querySelectorAll(".content-li");
