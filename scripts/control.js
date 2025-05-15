@@ -69,7 +69,7 @@ const currentDis = function (v) {
                 <p class="usertext hide">
                  ${v.text}
                 </p>
-                <span class="deleteBtn">❌</span>
+                <span class="delete">❌</span>
               </div>
             </li>
             `;
