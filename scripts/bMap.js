@@ -89,3 +89,12 @@ const throttle = function (fn, delay = 500) {
     }
   };
 };
+
+// laydate
+layui.use(function () {
+  const laydate = layui.laydate;
+  // 渲染
+  laydate.render({
+    elem: "#laydate-button",
+  });
+});

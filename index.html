@@ -7,6 +7,10 @@
       type="text/javascript"
       src="//api.map.baidu.com/getscript?v=3.0&ak=7nA4G3rFjxiohKGsXppvSAIMrw5LKRgm"
     ></script>
+    <!-- 引入 layui.css -->
+    <link href="//unpkg.com/layui@2.11.2/dist/css/layui.css" rel="stylesheet" />
+    <!-- 引入 layui.js -->
+    <script src="//unpkg.com/layui@2.11.2/dist/layui.js"></script>
     <title>Map</title>
     <link rel="stylesheet" href="style.css" />
   </head>
@@ -32,7 +36,7 @@
               <option value="2">哀😢</option>
               <option value="3">乐😄</option>
             </select>
-            <span class="date">日期</span>
+            <input class="date" id="laydate-button" placeholder="日期" />
             <!--已选择后 <span class="date">2025/05/14</span> -->
             <span class="local">地点</span>
             <!--已选择后 <span class="local">✔️</span> -->
