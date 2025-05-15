@@ -71,8 +71,18 @@ const geocoder = function () {
     const point = new BMap.Point(pt.lng, pt.lat);
     tempMarker = new BMap.Marker(point);
     map.addOverlay(tempMarker);
+
+    writebox.classList.add("show");
     geoc.getLocation(pt, function (e) {
       const address = e.addressComponents;
+
+      currentLocal.innerText = `${
+        address.province +
+        address.city +
+        address.district +
+        address.street +
+        address.streetNumber
+      }`;
       console.log(address);
     });
   });
@@ -89,12 +99,3 @@ const throttle = function (fn, delay = 500) {
     }
   };
 };
-
-// laydate
-layui.use(function () {
-  const laydate = layui.laydate;
-  // 渲染
-  laydate.render({
-    elem: "#laydate-button",
-  });
-});
