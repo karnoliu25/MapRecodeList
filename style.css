@@ -3,6 +3,11 @@
   margin: 0;
   padding: 0;
 }
+html,
+body,
+.container {
+  height: 100vh;
+}
 a {
   color: #eee;
   text-decoration: none;
@@ -32,11 +37,7 @@ button {
 button:hover {
   background-color: #d4e3fa;
 }
-
 .container {
-  width: 95vw;
-  height: 90vh;
-  margin: 5vh auto;
   display: flex;
   flex-direction: column;
   background-color: var(--bg-color);
@@ -44,12 +45,12 @@ button:hover {
 /* 首尾 */
 header,
 footer {
-  height: 60px;
+  height: 7vh;
   color: #eee;
   background: var(--minor-color);
 }
 header {
-  line-height: 60px;
+  line-height: 8vh;
   font-weight: 800;
   font-size: large;
   padding-left: 20px;
@@ -63,12 +64,14 @@ footer {
 /* 主体 */
 .main {
   display: flex;
-  flex-grow: 1;
+  height: 86vh;
 }
 /*  记录区域 */
 .record {
   width: 40vw;
   background: var(--main-color);
+  overflow: scroll;
+  overflow-x: hidden;
 }
 
 /* 记录主体 */
@@ -144,12 +147,11 @@ footer {
   /* 隐藏光标 */
   caret-color: transparent;
 }
-.writebox span {
-  cursor: pointer;
+.writebox .local {
   font-weight: 700;
-  border: 1px solid var(--minor-color);
-  border-radius: 10px;
-  padding: 0 5px;
+  padding: 0 20px;
+  text-align: left;
+  margin-top: 5px;
 }
 .writebox-control {
   display: flex;
@@ -166,6 +168,5 @@ footer {
 }
 /* 地图区域 */
 .map {
-  position: relative;
   flex-grow: 1;
 }
