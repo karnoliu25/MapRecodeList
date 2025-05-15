@@ -12,3 +12,4 @@ const currentLocal = document.querySelector(".current-local");
 const text = document.querySelector("#writehere");
 // 显示区元素
 const writebox = document.querySelector(".writebox");
+const contentList = document.querySelector(".content-list");

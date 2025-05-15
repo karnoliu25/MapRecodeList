@@ -44,3 +44,27 @@ const selectAbout = function (select) {
 const save = function () {
   localStorage.setItem("localData", JSON.stringify(localData));
 };
+// 逐条显示
+const contentDis = function () {
+  if (localData) {
+    localData.forEach((v) => {
+      const template = `
+             <li >
+              <div class="content">
+                <h3>${v.title}</h3>
+                <div class="tip-info">
+                  <span${v.date}</span><span>${v.weather}</span><span>${v.mood}</span>
+                </div>
+
+                <p>${v.currentLocal}</p>
+                <p class="usertext hide">
+                 ${v.text}
+                </p>
+                <span class="delete">❌</span>
+              </div>
+            </li>
+            `;
+      contentList.insertAdjacentHTML("afterbegin", template);
+    });
+  }
+};
