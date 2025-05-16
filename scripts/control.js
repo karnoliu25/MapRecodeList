@@ -90,7 +90,14 @@ const deleteFn = function (e) {
 const toggle = function (e) {
   const usertext = document.querySelectorAll(".usertext");
   usertext.forEach((v) => v.classList.add("hide"));
+
   const currentText = e.currentTarget.querySelector(".usertext");
+  const currentId = e.currentTarget.querySelector(".delete").dataset.id;
+  console.log(currentId);
+  let currentObj = localData.find((i) => i.id == currentId);
+  info(currentObj);
+  console.log(currentObj);
+
   currentText.classList.toggle("hide");
   e.stopPropagation();
 };

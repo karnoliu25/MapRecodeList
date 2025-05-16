@@ -1,28 +1,26 @@
-window.onload = function () {
-  if (window.location.protocol === "https:") {
-    BMAP_PROTOCOL = "https"; // 全局设置
+if (window.location.protocol === "https:") {
+  BMAP_PROTOCOL = "https"; // 全局设置
+}
+
+const map = new BMap.Map("map", {
+  enableRotate: false, // 禁止旋转
+  enableTilt: true, // 可以倾斜
+}); // 创建Map实例
+
+map.enableScrollWheelZoom(true); //开启鼠标滚轮缩放
+
+// 获取用户当前经纬度
+navigator.geolocation.getCurrentPosition(
+  function (position) {
+    const longitude = position.coords.longitude;
+    const latitude = position.coords.latitude;
+    init(longitude, latitude);
+  },
+  function () {
+    console.log(`error`);
+    init();
   }
-
-  const map = new BMap.Map("map", {
-    enableRotate: false, // 禁止旋转
-    enableTilt: true, // 可以倾斜
-  }); // 创建Map实例
-
-  map.enableScrollWheelZoom(true); //开启鼠标滚轮缩放
-
-  // 获取用户当前经纬度
-  navigator.geolocation.getCurrentPosition(
-    function (position) {
-      const longitude = position.coords.longitude;
-      const latitude = position.coords.latitude;
-      init(longitude, latitude);
-    },
-    function () {
-      console.log(`error`);
-      init();
-    }
-  );
-};
+);
 
 // ==操作函数==
 // --初始化地图
@@ -53,18 +51,12 @@ const addControl = function () {
 const makeMarker = function (point, title, text) {
   const marker = new BMap.Marker(point);
   map.addOverlay(marker);
-  marker.addEventListener("click", function () {
-    info(title, text, point);
-  });
 };
 // --添加信息窗口--
-const info = function (title = "hello", content = "world", point) {
-  const opts = {
-    window: 250,
-    height: 100,
-    title: title,
-  };
-  const infoWindow = new BMap.InfoWindow(content, opts);
+const info = function (ob) {
+  const content = `${ob.text || "无信息"}`;
+  const infoWindow = new BMap.InfoWindow(content);
+  const point = new BMap.Point(ob.point.lng, ob.point.lat);
   map.openInfoWindow(infoWindow, point);
 };
 // --点击事件----逆地址解析--
