@@ -12,6 +12,10 @@ a {
   color: #eee;
   text-decoration: none;
 }
+img {
+  width: 20px;
+  height: 20px;
+}
 li {
   list-style: none;
 }
