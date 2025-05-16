@@ -1,31 +1,28 @@
-if (window.location.protocol === "https:") {
-  BMAP_PROTOCOL = "https"; // 全局设置
-}
-// 关闭日志上报（减少 Mixed Content 错误）
-window.BMap = window.BMap || {};
-window.BMap.apiConfig = {
-  logUrl: "", // 置空禁用
-};
-const map = new BMap.Map("map", {
-  enableRotate: false, // 禁止旋转
-  enableTilt: true, // 可以倾斜
-}); // 创建Map实例
-// 强制所有资源使用 HTTPS
-
-map.enableScrollWheelZoom(true); //开启鼠标滚轮缩放
-
-// 获取用户当前经纬度
-navigator.geolocation.getCurrentPosition(
-  function (position) {
-    const longitude = position.coords.longitude;
-    const latitude = position.coords.latitude;
-    init(longitude, latitude);
-  },
-  function () {
-    console.log(`error`);
-    init();
+window.onload = function () {
+  if (window.location.protocol === "https:") {
+    BMAP_PROTOCOL = "https"; // 全局设置
   }
-);
+
+  const map = new BMap.Map("map", {
+    enableRotate: false, // 禁止旋转
+    enableTilt: true, // 可以倾斜
+  }); // 创建Map实例
+
+  map.enableScrollWheelZoom(true); //开启鼠标滚轮缩放
+
+  // 获取用户当前经纬度
+  navigator.geolocation.getCurrentPosition(
+    function (position) {
+      const longitude = position.coords.longitude;
+      const latitude = position.coords.latitude;
+      init(longitude, latitude);
+    },
+    function () {
+      console.log(`error`);
+      init();
+    }
+  );
+};
 
 // ==操作函数==
 // --初始化地图
