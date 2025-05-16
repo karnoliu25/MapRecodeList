@@ -1,11 +1,17 @@
+if (window.location.protocol === "https:") {
+  BMAP_PROTOCOL = "https"; // 全局设置
+}
+// 关闭日志上报（减少 Mixed Content 错误）
+window.BMap = window.BMap || {};
+window.BMap.apiConfig = {
+  logUrl: "", // 置空禁用
+};
 const map = new BMap.Map("map", {
   enableRotate: false, // 禁止旋转
   enableTilt: true, // 可以倾斜
 }); // 创建Map实例
 // 强制所有资源使用 HTTPS
-if (window.location.protocol === "https:") {
-  BMAP_PROTOCOL = "https"; // 全局设置
-}
+
 map.enableScrollWheelZoom(true); //开启鼠标滚轮缩放
 
 // 获取用户当前经纬度
