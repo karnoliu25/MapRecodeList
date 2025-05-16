@@ -1,18 +1,22 @@
 // 操作函数
 // 提交
 const submit = function () {
-  userData.id = Date.now();
-  userData.title = title.value === "" ? "未命名" : title.value;
-  userData.weather = selectAbout(weatherSel);
-  userData.mood = selectAbout(moodSel);
-  userData.date = date.value === "" ? "未记录时间" : date.value;
-  userData.currentLocal = currentLocal.innerText;
-  userData.text = text.value === "" ? "未做记录" : text.value;
-  localData.push(userData);
+  const newEntry = {
+    id: Date.now(),
+    title: title.value === "" ? "未命名" : title.value,
+    weather: selectAbout(weatherSel),
+    mood: selectAbout(moodSel),
+    date: date.value === "" ? "未记录时间" : date.value,
+    currentLocal: currentLocal.innerText,
+    text: text.value === "" ? "未做记录" : text.value,
+    point: userData.point,
+  };
+  localData.push(newEntry);
   save();
-  makeMarker(userData.point, userData.title, userData.text);
-  renderList(userData);
+  makeMarker(newEntry.point, newEntry.title, newEntry.text);
+  renderList();
   writebox.classList.remove("show");
+  console.log(localData);
 };
 // 重置
 const reset = function () {
@@ -27,7 +31,6 @@ const reset = function () {
 // 取消
 const cancel = function () {
   reset();
-  userData.id = "";
   writebox.classList.remove("show");
 };
 // 获取select相关数据
@@ -41,16 +44,17 @@ const selectAbout = function (select) {
 const save = function () {
   localStorage.setItem("localData", JSON.stringify(localData));
 };
-// 历史显示
-const contentDis = function () {
-  if (localData) {
+// 渲染
+const renderList = function () {
+  contentList.innerHTML = "";
+  if (localData && localData.length) {
     localData.forEach((v) => {
-      renderList(v);
+      templateList(v);
     });
   }
 };
-// 渲染
-const renderList = function (v) {
+// 模板
+const templateList = function (v) {
   const template = `
              <li class="content-li">
               <div class="content" onclick="toggle(event)">
@@ -73,19 +77,15 @@ const deleteFn = function (e) {
   const id = e.dataset.id;
   console.log(id);
   if (confirm("确定删除记录吗？")) {
-    let index = localData.map((item) => console.log(item.id)).indexOf(id);
-
-    console.log(localData);
+    let index = localData.findIndex((i) => i.id == id);
     console.log(index);
+    if (index !== -1) {
+      localData.splice(index, 1);
+      save();
+      renderList();
+    }
   }
 };
-//  if (userData.id && confirm("确定删除笔记吗？")) {
-//         const arr = this.notes.find((note) => note.id === this.selectedId);
-//         const index = this.notes.indexOf(arr);
-//         if (index !== -1) {
-//           this.notes.splice(index, 1);
-//           localStorage.setItem("notes", JSON.stringify(this.notes));
-//         }
 // 类名转换
 const toggle = function (e) {
   const usertext = document.querySelectorAll(".usertext");

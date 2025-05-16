@@ -7,7 +7,7 @@ layui.use(function () {
   });
 });
 // 监听元素
-window.addEventListener("load", contentDis);
+window.addEventListener("load", renderList);
 submitBtn.addEventListener("click", submit);
 resetBtn.addEventListener("click", reset);
 cancelBtn.addEventListener("click", cancel);
