@@ -29,6 +29,7 @@ const init = function (lng = 116.404, lat = 39.915) {
   map.centerAndZoom(point, 14);
   addControl();
   if (localData) {
+    map.clearOverlays();
     localData.forEach((v) => {
       makeMarker(v.point, v.title, v.text);
     });

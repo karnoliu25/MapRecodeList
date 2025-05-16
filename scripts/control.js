@@ -16,7 +16,6 @@ const submit = function () {
   makeMarker(newEntry.point, newEntry.title, newEntry.text);
   renderList();
   writebox.classList.remove("show");
-  console.log(localData);
 };
 // 重置
 const reset = function () {
@@ -42,7 +41,19 @@ const selectAbout = function (select) {
 };
 // 保存
 const save = function () {
-  localStorage.setItem("localData", JSON.stringify(localData));
+  if (localData.length === 0) {
+    return;
+  }
+  try {
+    const lastObj = localData.slice(-1);
+    if (lastObj) {
+      const { lng, lat } = lastObj[0].point;
+      init(lng, lat);
+    }
+    localStorage.setItem("localData", JSON.stringify(localData));
+  } catch (error) {
+    console.error("保存数据失败:", error);
+  }
 };
 // 渲染
 const renderList = function () {
@@ -75,10 +86,8 @@ const templateList = function (v) {
 // 删除
 const deleteFn = function (e) {
   const id = e.dataset.id;
-  console.log(id);
   if (confirm("确定删除记录吗？")) {
     let index = localData.findIndex((i) => i.id == id);
-    console.log(index);
     if (index !== -1) {
       localData.splice(index, 1);
       save();
@@ -93,11 +102,11 @@ const toggle = function (e) {
 
   const currentText = e.currentTarget.querySelector(".usertext");
   const currentId = e.currentTarget.querySelector(".delete").dataset.id;
-  console.log(currentId);
   let currentObj = localData.find((i) => i.id == currentId);
+  if (!currentObj) {
+    return;
+  }
   info(currentObj);
-  console.log(currentObj);
-
   currentText.classList.toggle("hide");
   e.stopPropagation();
 };
