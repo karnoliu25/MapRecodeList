@@ -28,13 +28,10 @@ const init = function (lng = 116.404, lat = 39.915) {
   const point = new BMap.Point(lng, lat);
   map.centerAndZoom(point, 14);
   addControl();
-  if (localData) {
-    map.clearOverlays();
-    localData.forEach((v) => {
-      makeMarker(v.point, v.title, v.text);
-    });
-  }
-
+  map.clearOverlays();
+  localData.forEach((v) => {
+    makeMarker(v.point, v.title, v.text);
+  });
   throttle(geocoder(), 1000);
 };
 // --添加控件--

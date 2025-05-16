@@ -41,14 +41,13 @@ const selectAbout = function (select) {
 };
 // 保存
 const save = function () {
-  if (localData.length === 0) {
-    return;
-  }
   try {
-    const lastObj = localData.slice(-1);
-    if (lastObj) {
-      const { lng, lat } = lastObj[0].point;
-      init(lng, lat);
+    if (localData.length > 0) {
+      const lastObj = localData.slice(-1)[0];
+      if (lastObj && lastObj.point) {
+        const { lng, lat } = lastObj.point;
+        init(lng, lat);
+      }
     }
     localStorage.setItem("localData", JSON.stringify(localData));
   } catch (error) {
@@ -58,9 +57,13 @@ const save = function () {
 // 渲染
 const renderList = function () {
   contentList.innerHTML = "";
+  map.clearOverlays();
   if (localData && localData.length) {
     localData.forEach((v) => {
       templateList(v);
+      if (v.point) {
+        makeMarker(v.point, v.title, v.text);
+      }
     });
   }
 };
@@ -90,7 +93,11 @@ const deleteFn = function (e) {
     let index = localData.findIndex((i) => i.id == id);
     if (index !== -1) {
       localData.splice(index, 1);
-      save();
+      try {
+        localStorage.setItem("localData", JSON.stringify(localData));
+      } catch (error) {
+        console.error("保存数据失败:", error);
+      }
       renderList();
     }
   }
