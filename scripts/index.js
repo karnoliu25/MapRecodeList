@@ -11,4 +11,3 @@ window.addEventListener("load", contentDis);
 submitBtn.addEventListener("click", submit);
 resetBtn.addEventListener("click", reset);
 cancelBtn.addEventListener("click", cancel);
-// deleteBtns.forEach((v) => v.addEventListener("click", deleteFn));

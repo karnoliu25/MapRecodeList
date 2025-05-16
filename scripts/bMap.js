@@ -76,6 +76,12 @@ const geocoder = function () {
     userData.point = point;
     tempMarker = new BMap.Marker(point);
     map.addOverlay(tempMarker);
+    title.value = "";
+    weatherSel.text = "";
+    moodSel.text = "";
+    date.value = "";
+    text.value = "";
+    currentLocal.innerText = "";
     writebox.classList.add("show");
     geoc.getLocation(pt, function (e) {
       const address = e.addressComponents;
